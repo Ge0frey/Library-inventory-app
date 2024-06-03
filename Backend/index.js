@@ -1,5 +1,6 @@
 import express, { urlencoded } from "express";
-import { PORT } from "./config.js";
+import { PORT, mongodbURL } from "./config.js";
+import mongoose from "mongoose";
 
 const app = express();
 
@@ -10,6 +11,14 @@ app.get('/', (req,res) => {
     res.send('Welcome to this server')
 });
 
-app.listen(PORT, () => {
-    console.log(`This server is running on port ${PORT}`)
-});
+mongoose
+.connect (mongodbURL)
+.then(() => {
+    console.log('App connected to database successfully');
+    app.listen(PORT, () => {
+        console.log(`This server is running on port ${PORT}`)
+    });
+})
+.catch((error) => {
+    console.log(error)
+})
