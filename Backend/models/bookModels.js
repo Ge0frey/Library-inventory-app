@@ -3,11 +3,11 @@ import mongoose from "mongoose";
 const bookSchema = mongoose.Schema(
     {
         title: {
-            type: string,
+            type: String,
             required: true,
         },
         author: {
-            type: string,
+            type: String,
             required: true,
         },
         publishYear: {
@@ -20,4 +20,4 @@ const bookSchema = mongoose.Schema(
     }
 ) 
 
-const Book = mongoose.model('book', bookSchema)
+export const Book = mongoose.model('book', bookSchema)
