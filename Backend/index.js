@@ -70,7 +70,22 @@ app.get('/books/:id', async (req,res) => {
     }
 })
 
-
+app.put('/books/:id', (req,res) => {
+    try {
+        if (!req.body.title ||
+            !req.body.author ||
+            !req.body.publishYear
+        ) {
+            return res.status(400).send({
+                message:`send all required fields: title,author,publishYear`,
+            })
+        }
+    } catch (error) {
+        console.log(error.message)
+        res.status(500).send({message:error.message})
+    }
+    const {id} = req.params;
+})
 
 
 mongoose
